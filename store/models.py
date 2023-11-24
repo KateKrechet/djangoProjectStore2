@@ -3,12 +3,11 @@ from django.db import models
 
 # Create your models here.
 class Category(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200,verbose_name = 'Категория')
     slug = models.SlugField(max_length=200)
 
     class Meta:
         ordering = ('name',)
-        verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
     def __str__(self):
@@ -16,7 +15,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, verbose_name='Категория')
     name = models.CharField(max_length=200, verbose_name='Название')
     slug = models.SlugField(max_length=200)
     image = models.CharField(max_length=100, blank=True, null=True, verbose_name='Картинка')
