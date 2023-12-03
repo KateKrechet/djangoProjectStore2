@@ -1,0 +1,30 @@
+body {
+    font-family: Tahoma;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    /*последний элемент в конце контейнера*/
+    justify-content: space-between;
+    line-height: 3em;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+.submenu {
+    display: flex;
+    background-color: lightgray;
+    justify-content: end;
+    line-height: 3em;
+}
+/*все блоки расположены рядом*/
+.content {
+    display: flex;
+
+}

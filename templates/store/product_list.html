@@ -6,12 +6,12 @@
     {% else %}Меню
     {% endif %}
 {% endblock %}
+
 {% block content %}
     <div id="sidebar">
-        <h3>Категории</h3>
         <ul>
             <li {% if not category %}class="selected"{% endif %}>
-                <a href="{% url "home" %}">Все категории</a>
+                <a href="{% url "home" %}">МЕНЮ</a>
             </li>
             {% for c in categories %}
                 <li {% if category.slug == c.slug %}class="selected"
@@ -21,20 +21,26 @@
             {% endfor %}
         </ul>
     </div>
-    <div id="main" class="product-list">
-        <h1>{% if category %}{{ category.name }}{% else %}Меню
-        {% endif %}</h1>
-        {% for product in products %}
-            <div class="item">
-                <a href="{{ product.get_absolute_url }}">
-                    <img src="{% if product.image %}{% static product.image %}
+    <div class="pl-header">
+        <h2>{% if category %}
+            {{ category.name }}
+        {% else %}Меню
+        {% endif %}</h2>
+
+        <div class="product-list">
+            {% for product in products %}
+                <div class="item">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{% if product.image %}{% static product.image %}
                               {% else %}{% static "img/no_image.png" %}
                               {% endif %}">
-                </a>
-                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                <br>
-                {{ product.price }} руб
-            </div>
-        {% endfor %}
+                    </a>
+                    <br>
+                    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                    <br>
+                    <div id="price">{{ product.price }} руб</div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

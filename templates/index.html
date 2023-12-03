@@ -5,17 +5,18 @@
 <meta charset="utf-8" />
 <title>{% block title %}Ресторан доставки{% endblock %}</title>
 <link href="{% static "css/base.css" %}" rel="stylesheet">
+<link href="{% static "css/product_list.css" %}" rel="stylesheet">
+<link href="{% static "css/product-detail.css" %}" rel="stylesheet">
 </head>
 <body>
-<div id="header">
-<a href="/" class="logo">Меню</a>
+<div class="menu">
+<a href="/">Меню</a>
+<a href="/">Мой профиль</a>
 </div>
-<div id="subheader">
-<div class="cart">
+<div class="submenu">
 Ваша корзина пуста
 </div>
-</div>
-<div id="content">
+<div class="content">
 {% block content %}
 {% endblock %}
 </div>

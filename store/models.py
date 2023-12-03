@@ -24,7 +24,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=200)
     image = models.CharField(max_length=100, blank=True, null=True, verbose_name='Картинка')
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
+    price = models.DecimalField(max_digits=10, decimal_places=0, verbose_name='Цена')
     volume = models.CharField(max_length=50, null=True, verbose_name='Объем')
     available = models.BooleanField(default=True, verbose_name='Доступность товара')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
