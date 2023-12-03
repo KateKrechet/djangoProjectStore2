@@ -1,0 +1,17 @@
+.product-detail{
+    display: flex;
+    flex-direction: column;
+}
+.product-detail h2{
+    color: indianred;
+}
+.product-detail h3 a{
+    color: brown;
+    text-decoration: none;
+}
+.product-detail img{
+    width: 40%;
+}
+.price{
+    font-weight: bolder;
+}

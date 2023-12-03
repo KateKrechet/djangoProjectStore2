@@ -1,0 +1,72 @@
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5%;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    line-height: 2em;
+
+}
+
+#sidebar ul li a {
+    color: brown;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+#sidebar ul li a:hover {
+    background-color: lightgray;
+}
+
+/*заголовок категории над карточками*/
+.pl-header {
+    display: flex;
+    flex-direction: column;
+}
+
+/*карточки в строку, переносятся*/
+.product-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item {
+    flex-basis: 40%;
+    flex-direction: column;
+}
+
+.item img {
+    width: 75%;
+    height: 75%;
+
+}
+
+.item a {
+    text-decoration: none;
+    color: indianred;
+    line-height: 2em;
+    font-weight: bolder;
+    text-align: center;
+}
+
+@media (max-width: 850px) {
+    .item img {
+        width: 60%;
+        height: 60%;
+    }
+    #sidebar ul li a {
+    font-size: 0.8em;
+}
+}
+@media (max-width: 540px) {
+    .item a {
+    line-height: 1.5em;
+    font-size: 0.8em;
+}
+    #price{
+        font-size: 0.8em;
+    }
+}
