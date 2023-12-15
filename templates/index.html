@@ -10,8 +10,13 @@
 </head>
 <body>
 <div class="menu">
-<a href="/">Меню</a>
-<a href="/">Мой профиль</a>
+<a href="/">Ресторан доставки</a>
+{% if not user.username %}
+    <a href="{% url 'login' %}">Мой профиль</a>
+{% else %}
+    <span>Добрый день! {{ username }}<a href="{% url 'logout' %}">Выйти</a></span>
+{% endif %}
+{#<a href="/">Мой профиль</a>#}
 </div>
 <div class="submenu">
 Ваша корзина пуста
