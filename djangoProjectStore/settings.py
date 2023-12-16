@@ -127,3 +127,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # когда ввели данные обеспечивается переход на главную страницу
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+# Параметр EMAIL_BACKEND указывает класс, который будет использоваться для отправки электронных писем.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

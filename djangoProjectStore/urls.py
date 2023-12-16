@@ -20,7 +20,6 @@ from store import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('login/', views.user_login, name='login'),
     # автоматически подключаются login logout
     path('user/', include('django.contrib.auth.urls')),
     path('', views.product_list, name='home'),

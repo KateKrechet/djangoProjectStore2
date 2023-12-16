@@ -1,13 +1,14 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
-from store.forms import *
-from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User, Group
+from .forms import *
+
 
 # Create your views here.
-def index(req):
-    return render(req, 'index.html')
-
+# def index(req):
+#     return render(req, 'index.html')
+# страница со всеми продуктами
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
@@ -18,27 +19,40 @@ def product_list(request, category_slug=None):
     data = {'category': category, 'categories': categories, 'products': products}
     return render(request, 'store/product_list.html', data)
 
-def product_detail(request, id, slug):
-    product = get_object_or_404(Product,id=id,slug=slug,available=True)
-    data = {'product': product}
-    return render(request,'store/product_detail.html',data)
 
-# def user_login(request):
-#     if request.method == 'POST':
-#         form = LoginForm(request.POST)
-#         if form.is_valid():
-#             cd = form.cleaned_data
-#             user = authenticate(request,
-#                                 username=cd['username'],
-#                                 password=cd['password'])
-#             if user is not None:
-#                 if user.is_active:
-#                     login(request, user)
-#                     return HttpResponse('Вход выполнен!')
-#                 else:
-#                     return HttpResponse('Аккаунт больше не активен!')
-#             else:
-#                 return HttpResponse('Пользователя с таким именем или паролем не существует!')
-#     else:
-#         form = LoginForm()
-#     return render(request, 'account/login.html', {'form': form})
+# страница с выбранным продуктом
+def product_detail(request, id, slug):
+    product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    data = {'product': product}
+    return render(request, 'store/product_detail.html', data)
+
+
+# регистрация пользователя
+def registration(req):
+    if req.POST:
+        user_form = Signupform(req.POST)
+        if user_form.is_valid():
+            user_form.save()
+            login = user_form.cleaned_data.get('username')
+            password = user_form.cleaned_data.get('password')
+            name = user_form.cleaned_data.get('first_name')
+            surname = user_form.cleaned_data.get('last_name')
+            mail = user_form.cleaned_data.get('email')
+            # сохраняем нового пользователя
+            user = authenticate(username=login, password=password)
+            # найдем нового пользователя
+            man = User.objects.get(username=login)
+            # заполним поля в таблице auth_user
+            man.email = mail
+            man.first_name = name
+            man.last_name = surname
+            man.save()
+            # находим группу зарегистрированных пользователей
+            group = Group.objects.get(id=1)
+            # добавляем нового человека в группу зарегистрированных пользователей
+            group.user_set.add(man)
+            return redirect('home')
+    else:
+        user_form = Signupform()
+    data = {'regform': user_form}
+    return render(req, 'registration/registration.html', context=data)
