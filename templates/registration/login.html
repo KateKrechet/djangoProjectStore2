@@ -1,26 +1,31 @@
 {% extends "index.html" %}
 {% block title %}Мой аккаунт{% endblock %}
 {% block content %}
-    <h1>Вход</h1>
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
+    <div class="user_form">
+        <h1>Вход</h1>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
 
-            <tr>
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="{% url 'password_reset' %}">Забыли свой пароль?</a>
-                </td>
-            </tr>
-        </table>
-        <p><input type="submit" value="Вход"></p>
-    </form>
+                <tr>
+                    <td>{{ form.password.label_tag }}</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="{% url 'password_reset' %}">Забыли свой пароль?</a>
+                    </td>
+                </tr>
+            </table>
+            <p><input type="submit" value="Вход"></p>
+        </form>
+        <h2>
+            <a href="{% url 'registration' %}">Регистрация</a>
+        </h2>
+    </div>
 
 {% endblock %}

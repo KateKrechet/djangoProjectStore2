@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
+    <div class="user_form">
+    <h2>
+        Пожалуйста, заполните форму:
+    </h2>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for one in regform %}
+            <div>{{ one.label_tag }}</div>
+            <div> {{ one }}</div>
+            <div> {{ one.errors }}</div>
+        {% endfor %}
+        <input type="submit" value="отправить">
+    </form>
+
+    </div>
+
+{% endblock %}

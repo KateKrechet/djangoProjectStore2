@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # автоматически подключаются login logout
     path('user/', include('django.contrib.auth.urls')),
+    path('user/registration',views.registration,name='registration'),
     path('', views.product_list, name='home'),
     path('<slug:category_slug>/', views.product_list,
          name='product_list_by_category'),
