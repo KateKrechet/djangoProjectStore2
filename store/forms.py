@@ -12,3 +12,8 @@ class Signupform(UserCreationForm):
     first_name = forms.CharField(label='имя', max_length=20)
     last_name = forms.CharField(label='фамилия', max_length=20, required=False)
 
+PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 11)]
+class CartAddProductForm(forms.Form):
+    quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
+    update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
+
