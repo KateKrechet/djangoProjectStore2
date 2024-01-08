@@ -25,7 +25,8 @@ def product_list(request, category_slug=None):
 # страница с выбранным продуктом
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
-    data = {'product': product}
+    cart_product_form = CartAddProductForm()
+    data = {'product': product, 'cart_product_form': cart_product_form}
     return render(request, 'store/product_detail.html', data)
 
 
@@ -83,4 +84,7 @@ def cart_remove(request, product_id):
 # отображение текущей корзины
 def cart_detail(request):
     cart = Cart(request)
-    return render(request, 'cart/detail.html', {'cart': cart})
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
+
+    return render(request, 'cart/cart_detail.html', {'cart': cart})
