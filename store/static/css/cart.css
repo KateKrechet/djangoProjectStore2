@@ -1,0 +1,85 @@
+.cart {
+    flex-direction: column;
+}
+
+.cart table {
+    table-layout: fixed;
+    width: 100%;
+    /*Рамки таблицы в 1*/
+    border-collapse: collapse;
+}
+
+.cart thead th:nth-child(1) {
+    width: 30%;
+}
+
+.cart thead th:nth-child(2) {
+    width: 15%;
+}
+
+.cart thead th:nth-child(3) {
+    width: 10%;
+}
+
+.cart thead th:nth-child(4) {
+    width: 15%;
+}
+
+.cart thead th:nth-child(5) {
+    width: 15%;
+}
+
+.cart thead th:nth-child(6) {
+    width: 15%;
+}
+
+.cart th,
+td {
+    padding: 1%;
+    text-align: center;
+}
+
+.cart td a {
+    text-decoration: none;
+    color: red;
+}
+
+.all {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.actions {
+    text-align: right;
+}
+.go_home{
+    text-decoration: none;
+    color: darkblue;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-right: 2%;
+}
+.go_to_order{
+    text-decoration: none;
+    color: red;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-right: 2%;
+}
+.cart td img{
+    width: 50%;
+}
+.but_update {
+    background-color: dimgrey;
+    border: solid black 1px;
+    color: white;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.form_cart select{
+    width: 30%;
+    height: 30px;
+}
+
