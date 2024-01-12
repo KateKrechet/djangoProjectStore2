@@ -30,12 +30,15 @@ urlpatterns = [
     path('add/<int:product_id>/', views.cart_add, name='cart_add'),
     path('remove/<int:product_id>/', views.cart_remove, name='cart_remove'),
 
+    path('create/', views.order_create, name='order_create'),
+
 
     path('', views.product_list, name='home'),
     path('<slug:category_slug>/', views.product_list,
          name='product_list_by_category'),
     path('<int:id>/<slug:slug>/', views.product_detail,
          name='product_detail'),
+    path('create/', views.order_create, name='order_create'),
 
 
 ]

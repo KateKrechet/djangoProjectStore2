@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+{% block title %}
+    Успешный заказ
+{% endblock %}
+{% block content %}
+    <div class="order">
+        <h1>Спасибо за Ваш заказ!</h1>
+        <p>Номер Вашего заказа <strong>{{ order.id }}</strong>.</p>
+    </div>
+
+{% endblock %}
