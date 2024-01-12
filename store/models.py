@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+import re
+from django.core.validators import ValidationError, RegexValidator
 
 
 # Create your models here.
@@ -42,12 +44,23 @@ class Product(models.Model):
         return reverse('product_detail', args=[self.id, self.slug])
 
 
+regex = re.compile(
+    r"([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\[[\t -Z^-~]*])")
+
+
+def exam_mail(email):
+    if re.fullmatch(regex, email) == None:
+        raise ValidationError('Введите адрес в формате address@mail.ru')
+
+
 class Order(models.Model):
+    DELIVERY_CHOICES = [('0', 'самовывоз'), ('1', 'Советский'), ('2', 'Володарский'), ('3', 'Фокинский'),
+                        ('4', 'Бежицкий')]
     name = models.CharField(max_length=50, verbose_name='Имя')
-    email = models.EmailField(verbose_name='email')
+    email = models.EmailField(verbose_name='email', validators=[exam_mail])
     address = models.CharField(max_length=250, blank=True, null=True, verbose_name='Адрес')
-    delivery = models.CharField(max_length=20, verbose_name='Доставка')
-    phone = models.CharField(max_length=12, verbose_name='Моб.телефон')
+    delivery = models.CharField(max_length=20, verbose_name='Доставка', choices=DELIVERY_CHOICES, default='0')
+    phone = models.CharField(max_length=12, verbose_name='Моб.телефон',validators=[RegexValidator('[+7][0-9]{10}', message='Введите телефон в формате +7**********')])
     created = models.DateTimeField(auto_now_add=True, verbose_name='Заказ создан')
     updated = models.DateTimeField(auto_now=True, verbose_name='Заказ обновлен')
     paid = models.BooleanField(default=False, verbose_name='Заказ оплачен/не оплачен')
