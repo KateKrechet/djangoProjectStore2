@@ -1,6 +1,11 @@
 {% extends "index.html" %}
-{% block title %}
-    Заказ
+{% load static %}
+{% block head %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="{% static 'js/order.js' %}" defer></script>
+    {% block title %}
+        Заказ
+    {% endblock %}
 {% endblock %}
 {% block content %}
     <div class="order">
@@ -10,19 +15,26 @@
             <ul>
                 {% for item in cart %}
                     <li>
-                        {{ item.quantity }}x {{ item.product.name }}
+                        {{ item.quantity }} x {{ item.product.name }}
                         <span>{{ item.total_price }} руб.</span>
                     </li>
                 {% endfor %}
             </ul>
             <p>ИТОГО: {{ cart.get_total_price }} руб.</p>
+
         </div>
         <form action="." method="post">
-            {{ form.as_p }}
+            {#            {{ form.as_p }}#}
+            {% for f in form %}
+                <div>{{ f.label_tag }}</div>
+                <div>{{ f }}</div>
+                <div>{{ f.errors }}</div>
+            {% endfor %}
             <p><input type="submit" value="Разместить заказ"></p>
             {% csrf_token %}
         </form>
-
+        <p id="cost_discount">ИТОГО с учетом скидки клиента: {{ itog1 }} руб.</p>
+        <p id="cost_discount_delivery">ИТОГО с учетом скидки клиента и доставки: {{ itog2 }} руб.</p>
 
     </div>
 
