@@ -92,7 +92,7 @@ def cart_detail(request):
 
     return render(request, 'cart/cart_detail.html', {'cart': cart})
 
-
+# вариант, при котором работают проверки формы, но нет учета стоимости доставки и персональной скидки
 # def order_create(request):
 #     cart = Cart(request)
 #     if request.method == 'POST':
@@ -122,39 +122,39 @@ def cart_detail(request):
 #     else:
 #         form = OrderCreateForm()
 #     return render(request, 'order/create.html', {'cart': cart, 'form': form})
+
+# через ajax-запрос учтена персональная скидка и стоимость доставки, но не работает проверка формы
 @method_decorator(csrf_exempt, name='dispatch')
 def order_create(request):
     cart = Cart(request)
-    if request.method == 'POST':
+    if request.POST:
         form = OrderCreateForm(request.POST)
-        name = request.POST.get('cn')
-        email = request.POST.get('email')
-        addr = request.POST.get('addr')
-        delivery = request.POST.get('delivery')
-        phone = request.POST.get('phone')
-        print(name,email,addr,delivery,phone)
-        # if form.is_valid():
-        #     order = form.save()
-        #     # ищем стоимость доставки
-        #     delivery = request.POST.get('delivery')
-        #     delivery_cost = 0 if delivery == '0' else (100 if delivery == '1' else 200)
-        #     print(delivery, type(delivery))
-        #     print(delivery_cost)
-        #     # скидка зарегистрированных пользователей - 5%
-        #     if request.user.id:
-        #         user_discount = 0.95
-        #     else:
-        #         user_discount = 1
-        #     print(user_discount)
-        #     # itog1 = cart.get_total_price() * user_discount
-        #     # itog2 = itog1 + delivery_cost
-        #     # print(itog1, itog2)
-        #     for item in cart:
-        #         OrderItem.objects.create(order=order, product=item['product'], price=item['price'],
-        #                                  quantity=item['quantity'])
-        #     # очистка корзины
-        #     cart.clear()
-        return JsonResponse({'mes': 'data success', 'link': 'http://127.0.0.1:8050/create/'})
+        if request.POST.get('type') == 'for_cost':
+            name = request.POST.get('cn')
+            email = request.POST.get('email')
+            addr = request.POST.get('addr')
+            delivery = request.POST.get('delivery')
+            phone = request.POST.get('phone')
+            print(name, email, addr, delivery, phone)
+            order = Order.objects.create(name=name, email=email, address=addr, delivery=delivery, phone=phone)
+            # стоимость доставки
+            delivery_cost = 0 if delivery == '0' else (100 if delivery == '1' else 200)
+            print(delivery_cost, type(delivery_cost))
+            # скидка для заказчика - 5% для зарегистрированных пользователей
+            if request.user.id:
+                user_discount = 0.95
+            else:
+                user_discount = 1
+            print(user_discount, type(user_discount))
+            itog1 = int(cart.get_total_price() * user_discount)
+            itog2 = itog1 + delivery_cost
+            print(itog1, itog2)
+            for item in cart:
+                OrderItem.objects.create(order=order, product=item['product'], price=item['price'] * user_discount,
+                                         quantity=item['quantity'])
+            # очистка корзины
+            cart.clear()
+            return JsonResponse({'itog1': itog1, 'itog2': itog2,'order_id':order.id})
     else:
         form = OrderCreateForm()
     return render(request, 'order/create.html', {'cart': cart, 'form': form})

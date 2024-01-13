@@ -1,3 +1,25 @@
 .order{
     flex-direction: column;
 }
+/*отступы от границ формы*/
+.order_form {
+    padding: 10px 10px;
+}
+
+.order_form input,select {
+    border-radius: 5px; /*закругление блоков*/
+    border: 1px solid darkslategray; /*толщина границ инпутов*/
+    margin-bottom: 10px; /*отступы между инпутами*/
+    width: 60%;
+    height:25px;
+}
+
+.order_form label,input{
+    font-weight: bolder;
+    font-size: 1em;
+}
+#cost_cart,#result,#cost_discount,#cost_discount_delivery{
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

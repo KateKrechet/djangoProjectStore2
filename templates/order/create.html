@@ -2,7 +2,7 @@
 {% load static %}
 {% block head %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="{% static 'js/order.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'js/order.js' %}" defer></script>
     {% block title %}
         Заказ
     {% endblock %}
@@ -20,21 +20,22 @@
                     </li>
                 {% endfor %}
             </ul>
-            <p>ИТОГО: {{ cart.get_total_price }} руб.</p>
+            <p id="cost_cart">ИТОГО: {{ cart.get_total_price }} руб.</p>
 
         </div>
-        <form action="." method="post">
-            {#            {{ form.as_p }}#}
+        <form class = 'order_form',action="." method="POST">
+            {% csrf_token %}
             {% for f in form %}
                 <div>{{ f.label_tag }}</div>
                 <div>{{ f }}</div>
                 <div>{{ f.errors }}</div>
             {% endfor %}
-            <p><input type="submit" value="Разместить заказ"></p>
-            {% csrf_token %}
+            <p><input type="button" value="Разместить заказ" onclick="get_form_values()"></p>
         </form>
-        <p id="cost_discount">ИТОГО с учетом скидки клиента: {{ itog1 }} руб.</p>
-        <p id="cost_discount_delivery">ИТОГО с учетом скидки клиента и доставки: {{ itog2 }} руб.</p>
+        <p id="result"></p>
+        <p id="cost_discount"></p>
+        <p id="cost_discount_delivery">.</p>
+        <a id='go_home' class='go_home' href="{% url "home" %}"></a>
 
     </div>
 
