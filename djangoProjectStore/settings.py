@@ -134,6 +134,7 @@ LOGOUT_REDIRECT_URL = 'home'
 
 # Параметр EMAIL_BACKEND указывает класс, который будет использоваться для отправки электронных писем.
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# CELERY_BROKER_URL = 'amqp://localhost'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465

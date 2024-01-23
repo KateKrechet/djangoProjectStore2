@@ -8,6 +8,7 @@ from .cart import Cart
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from .tasks import order_created
 
 
 # Create your views here.
@@ -92,6 +93,7 @@ def cart_detail(request):
 
     return render(request, 'cart/cart_detail.html', {'cart': cart})
 
+
 # вариант, при котором работают проверки формы, но нет учета стоимости доставки и персональной скидки
 # def order_create(request):
 #     cart = Cart(request)
@@ -154,7 +156,8 @@ def order_create(request):
                                          quantity=item['quantity'])
             # очистка корзины
             cart.clear()
-            return JsonResponse({'itog1': itog1, 'itog2': itog2,'order_id':order.id})
+            order_created.delay(order.id)
+            return JsonResponse({'itog1': itog1, 'itog2': itog2, 'order_id': order.id})
     else:
         form = OrderCreateForm()
     return render(request, 'order/create.html', {'cart': cart, 'form': form})
