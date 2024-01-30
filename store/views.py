@@ -156,6 +156,7 @@ def order_create(request):
                                          quantity=item['quantity'])
             # очистка корзины
             cart.clear()
+            print(order.id)
             order_created.delay(order.id)
             return JsonResponse({'itog1': itog1, 'itog2': itog2, 'order_id': order.id})
     else:

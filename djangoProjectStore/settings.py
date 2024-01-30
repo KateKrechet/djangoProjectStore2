@@ -27,8 +27,10 @@ SECRET_KEY = 'django-insecure--=lysj0srx9lo0h(*$#f$b(#z%n$=6vh(het5ubpm@au+*j)a+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG=False
 
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -134,7 +136,7 @@ LOGOUT_REDIRECT_URL = 'home'
 
 # Параметр EMAIL_BACKEND указывает класс, который будет использоваться для отправки электронных писем.
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = 'amqp://localhost:5672//'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
