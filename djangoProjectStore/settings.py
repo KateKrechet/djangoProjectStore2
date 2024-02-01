@@ -147,4 +147,17 @@ EMAIL_HOST_PASSWORD = 'mvedwiuyyeqqlmnn'
 DEFAULT_FROM_EMAIL = 'k.krechet@yandex.ru'
 
 
+# Braintree
+BRAINTREE_MERCHANT_ID = 'jbfyxxvpfv2d24kx' # Merchant ID
+BRAINTREE_PUBLIC_KEY = 'hrg26dm7t7vt7hwy' # Public Key
+BRAINTREE_PRIVATE_KEY = '537cd87614ea76f589d5237887c9c0b4' # Private key
+from braintree import Configuration, Environment
+Configuration.configure(
+Environment.Sandbox,
+BRAINTREE_MERCHANT_ID,
+BRAINTREE_PUBLIC_KEY,
+BRAINTREE_PRIVATE_KEY
+)
+
+
 

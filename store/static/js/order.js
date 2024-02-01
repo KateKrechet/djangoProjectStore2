@@ -28,6 +28,7 @@ function get_form_values() {
                 $('#cost_discount').html('Стоимость с учетом персональной скидки (руб.):'+ data.itog1)
                 $('#cost_discount_delivery').html('Итоговая стоимость с учетом доставки (руб.):'+ data.itog2)
                 $('#go_home').html('Вернуться к покупкам')
+                $('#go_pay').html('Оплатить')
 
             },
             error: function (error) {

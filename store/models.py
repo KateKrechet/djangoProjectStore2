@@ -64,6 +64,8 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name='Заказ создан')
     updated = models.DateTimeField(auto_now=True, verbose_name='Заказ обновлен')
     paid = models.BooleanField(default=False, verbose_name='Заказ оплачен/не оплачен')
+    braintree_id = models.CharField(max_length=150, blank=True, verbose_name='ID транзакции')
+    amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True,null=True, verbose_name='Сумма заказа (руб)')
 
     class Meta:
         ordering = ('created',)

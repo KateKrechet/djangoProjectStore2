@@ -9,6 +9,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from .tasks import order_created
+from django.urls import reverse
+import braintree
 
 
 # Create your views here.
@@ -138,7 +140,7 @@ def order_create(request):
             delivery = request.POST.get('delivery')
             phone = request.POST.get('phone')
             print(name, email, addr, delivery, phone)
-            order = Order.objects.create(name=name, email=email, address=addr, delivery=delivery, phone=phone)
+            # order = Order.objects.create(name=name, email=email, address=addr, delivery=delivery, phone=phone)
             # стоимость доставки
             delivery_cost = 0 if delivery == '0' else (100 if delivery == '1' else 200)
             print(delivery_cost, type(delivery_cost))
@@ -151,14 +153,69 @@ def order_create(request):
             itog1 = int(cart.get_total_price() * user_discount)
             itog2 = itog1 + delivery_cost
             print(itog1, itog2)
+            order = Order.objects.create(name=name, email=email, address=addr, delivery=delivery, phone=phone,
+                                         amount=itog2)
             for item in cart:
                 OrderItem.objects.create(order=order, product=item['product'], price=item['price'] * user_discount,
                                          quantity=item['quantity'])
             # очистка корзины
             cart.clear()
             print(order.id)
+            # асинхронная задача - отправление письма о заказе
             order_created.delay(order.id)
+            # устанавливаем в сессии номер текущего заказа
+            request.session['order_id'] = order.id
+
             return JsonResponse({'itog1': itog1, 'itog2': itog2, 'order_id': order.id})
     else:
         form = OrderCreateForm()
     return render(request, 'order/create.html', {'cart': cart, 'form': form})
+
+
+# оплата успешна
+def payment_done(request):
+    return render(request, 'payment/done.html')
+
+
+# оплата отменена
+def payment_canceled(request):
+    return render(request, 'payment/canceled.html')
+
+
+# обработка платежей
+def payment_process(request):
+    # получаем номер текущего заказа
+    order_id = request.session.get('order_id')
+    # извлекаем объект order для данного номера
+    order = get_object_or_404(Order, id=order_id)
+    if request.method == 'POST':
+        # одноразовый номер токена, сгенерированный
+        # BrainTree за оплату. Он будет сгенерирован в
+        # шаблон с использованием Braintree JavaScript SDK
+        nonce = request.POST.get('payment_method_nonce', None)
+        # создание транзакции
+        result = braintree.Transaction.sale({
+            # общая сумма на оплату учетом скидки клиента и доставки
+            'amount': '{:.2f}'.format(order.amount),
+            'payment_method_nonce': nonce,
+            # транзакция автоматически передается на урегулирование
+            'options': {
+                'submit_for_settlement': True
+            }
+        })
+        # Если транзакция успешно обработана
+        if result.is_success:
+            # помечаем заказ как оплаченный
+            order.paid = True
+            # сохраняем уникальный номер транзакции
+            order.braintree_id = result.transaction.id
+            order.save()
+            # платеж прошел успещно
+            return redirect('done')
+        else:
+            # оплата отменена
+            return redirect('canceled')
+    else:
+        # генерировать токен, если представление было загружено GET-запросом
+        client_token = braintree.ClientToken.generate()
+        return render(request, 'payment/process.html', {'order': order, 'client_token': client_token})
