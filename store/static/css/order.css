@@ -23,3 +23,10 @@
     font-weight: bold;
     margin-bottom: 10px;
 }
+.go_pay{
+    text-decoration: none;
+    color: green;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-right: 2%;
+}

@@ -1,23 +1,24 @@
 {% extends "index.html" %}
 {% block title %}Оплата банковской картой{% endblock %}
 {% block content %}
-    <h1>Введите данные вашей банковской карты</h1>
-    <form action="." id="payment" method="post">
-        <label for="card-number">Номер банковской карты</label>
-        <div id="card-number" class="field"></div>
-        <label for="cvv">CVV</label>
-        <div id="cvv" class="field"></div>
-        <label for="expiration-date">Срок действия</label>
-        <div id="expiration-date" class="field"></div>
-        <input type="hidden" id="nonce" name="payment_method_nonce" value="">
-        {% csrf_token %}
-        <input type="submit" value="Оплатить">
-    </form>
+    <div class="order">
+        <h1>Введите данные вашей банковской карты</h1>
+        <form action="." id="payment" method="post">
+            <label for="card-number">Номер банковской карты</label>
+            <div id="card-number" class="field"></div>
+            <label for="cvv">CVV</label>
+            <div id="cvv" class="field"></div>
+            <label for="expiration-date">Срок действия</label>
+            <div id="expiration-date" class="field"></div>
+            <input type="hidden" id="nonce" name="payment_method_nonce" value="">
+            {% csrf_token %}
+            <input type="submit" value="Оплатить">
+        </form>
+    </div>
+
     <!-- Load the required client component. -->
-{#    <script src="https://js.braintreegateway.com/web/3.29.0/js/client.min.js"></script>#}
     <script src="https://js.braintreegateway.com/web/3.99.0/js/client.min.js"></script>
     <!-- Load Hosted Fields component. -->
-{#    <script src="https://js.braintreegateway.com/web/3.29.0/js/hostedfields.min.js"></script>#}
     <script src="https://js.braintreegateway.com/web/3.99.0/js/hosted-fields.min.js"></script>
     <script>
         var form = document.querySelector('#payment');
@@ -34,7 +35,7 @@
                 client: clientInstance,
                 {#указываем стили css для полей ввода#}
                 styles: {
-                    'input': {'font-size': '13px'},
+                    'input': {'font-size': '1em'},
                     'input.invalid': {'color': 'red'},
                     'input.valid': {'color': 'green'}
                 },

@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from .tasks import order_created
 from django.urls import reverse
 import braintree
+import requests
 
 
 # Create your views here.
@@ -152,9 +153,12 @@ def order_create(request):
             print(user_discount, type(user_discount))
             itog1 = int(cart.get_total_price() * user_discount)
             itog2 = itog1 + delivery_cost
-            print(itog1, itog2)
+            # переводим в $ для BrainTree
+            url = 'https://api.tinkoff.ru/v1/currency_rates?from=USD&to=RUB'
+            usd = requests.get(url).json()['payload']['rates'][2]['buy']
+            print(itog1, itog2, usd)
             order = Order.objects.create(name=name, email=email, address=addr, delivery=delivery, phone=phone,
-                                         amount=itog2)
+                                         amount_rub=itog2, amount_usd=itog2 / usd)
             for item in cart:
                 OrderItem.objects.create(order=order, product=item['product'], price=item['price'] * user_discount,
                                          quantity=item['quantity'])
@@ -196,7 +200,7 @@ def payment_process(request):
         # создание транзакции
         result = braintree.Transaction.sale({
             # общая сумма на оплату учетом скидки клиента и доставки
-            'amount': '{:.2f}'.format(order.amount),
+            'amount': '{:.2f}'.format(order.amount_usd),
             'payment_method_nonce': nonce,
             # транзакция автоматически передается на урегулирование
             'options': {
