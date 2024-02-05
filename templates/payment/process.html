@@ -3,7 +3,7 @@
 {% block content %}
     <div class="order">
         <h1>Введите данные вашей банковской карты</h1>
-        <form action="." id="payment" method="post">
+        <form class="order_form" action="." id="payment" method="post">
             <label for="card-number">Номер банковской карты</label>
             <div id="card-number" class="field"></div>
             <label for="cvv">CVV</label>
@@ -12,7 +12,7 @@
             <div id="expiration-date" class="field"></div>
             <input type="hidden" id="nonce" name="payment_method_nonce" value="">
             {% csrf_token %}
-            <input type="submit" value="Оплатить">
+            <input id="but_pay" type="submit" value="Оплатить">
         </form>
     </div>
 
@@ -35,9 +35,9 @@
                 client: clientInstance,
                 {#указываем стили css для полей ввода#}
                 styles: {
-                    'input': {'font-size': '1em'},
+                    'input': {'font-size': '1em', 'border': '1px solid darkslategray'},
                     'input.invalid': {'color': 'red'},
-                    'input.valid': {'color': 'green'}
+                    'input.valid': {'color': 'green'},
                 },
                 fields: {
                     number: {selector: '#card-number'},

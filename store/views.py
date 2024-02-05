@@ -141,7 +141,6 @@ def order_create(request):
             delivery = request.POST.get('delivery')
             phone = request.POST.get('phone')
             print(name, email, addr, delivery, phone)
-            # order = Order.objects.create(name=name, email=email, address=addr, delivery=delivery, phone=phone)
             # стоимость доставки
             delivery_cost = 0 if delivery == '0' else (100 if delivery == '1' else 200)
             print(delivery_cost, type(delivery_cost))

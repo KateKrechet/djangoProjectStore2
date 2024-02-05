@@ -11,11 +11,15 @@
         <h3><a href="{{ product.category.get_absolute_url }}">
             {{ product.category }}</a></h3>
         <p class="price">{{ product.price }} руб</p>
-    <form action="{% url "cart_add" product.id %}" method="post">
-        {{ cart_product_form }}
-        {% csrf_token %}
-        <input type="submit" value="Добавить в корзину">
-    </form>
+        <form class="form_sel" action="{% url "cart_add" product.id %}" method="post">
+            <table>
+                <tr>{{ cart_product_form.quantity.label_tag }}</tr>
+                <tr>{{ cart_product_form.quantity }}</tr>
+            </table>
+{#            {{ cart_product_form }}#}
+            {% csrf_token %}
+            <input class="to_cart" type="submit" value="Добавить в корзину">
+        </form>
         {{ product.description|linebreaks }}
         <p>Вес: {{ product.volume }} г</p>
     </div>
