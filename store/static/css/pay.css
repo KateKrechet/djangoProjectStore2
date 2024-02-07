@@ -1,0 +1,14 @@
+#but_pay{
+    width: 20%;
+}
+#card-number{
+    width: 50%;
+}
+.field {
+    height: 30px;
+    border: 1px solid darkslategray;
+    border-radius: 5px; /*закругление блоков*/
+    margin-bottom: 10px; /*отступы между инпутами*/
+    margin-top: 5px;
+    width: 20%;
+}

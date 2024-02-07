@@ -134,7 +134,7 @@ def order_create(request):
     cart = Cart(request)
     if request.POST:
         form = OrderCreateForm(request.POST)
-        if request.POST.get('type') == 'for_cost':
+        if request.POST:
             name = request.POST.get('cn')
             email = request.POST.get('email')
             addr = request.POST.get('addr')

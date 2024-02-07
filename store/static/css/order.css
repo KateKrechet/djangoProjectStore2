@@ -14,9 +14,10 @@
     height:25px;
 }
 
-.order_form label,input{
+.order_form label,input,select{
     font-weight: bolder;
     font-size: 1em;
+
 }
 #cost_cart,#result,#cost_discount,#cost_discount_delivery{
     font-size: 1em;

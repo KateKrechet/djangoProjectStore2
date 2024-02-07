@@ -1,5 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import TextInput
+
 from .models import *
 
 class Signupform(UserCreationForm):
@@ -22,4 +24,10 @@ class OrderCreateForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['name', 'email','address', 'delivery', 'phone']
+        widgets = {
+            'name': TextInput(attrs={'placeholder': 'Имя'}),
+            'email':TextInput(attrs={'placeholder': 'qwerty@mail.ru'}),
+            'address':TextInput(attrs={'placeholder': 'улица Ленина, д.1, кв.1'}),
+            'phone':TextInput(attrs={'placeholder': '+7**********'}),
+        }
 
