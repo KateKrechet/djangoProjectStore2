@@ -4,12 +4,16 @@ function get_form_values() {
     let address = $('#id_address').val();
     let phone = $('#id_phone').val()
     let delivery = $('#id_delivery option:selected').val();
-    const pattern_phone = /^[+][\d]{11}\d$/
-    let test_phone = pattern_phone.test(phone)
-    const pattern_email = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
-    let test_email = pattern_email.test(email)
+    const pattern_phone = /^\+\d{11}$/
+    const pattern_email = /[^\s]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
     let url = '/create/'
-    if (client_name && email && address && delivery && phone && test_phone && test_email) {
+    if (client_name === "" || email === "" || address === "" || phone === "") {
+        alert('Заполните все необходимые данные в формате по образцу!')
+    } else if (!email.match(pattern_email)) {
+        alert('Заполните адрес электронной почты по образцу!')
+    } else if (!phone.match(pattern_phone)) {
+        alert('Заполните номер мобильного телефона по образцу!')
+    } else {
         console.log('Считываем данные введенные пользователем:', client_name, email, address, delivery, phone);
         $.ajax(url, {
                 method: 'POST',
@@ -39,8 +43,6 @@ function get_form_values() {
             }
         )
 
-    } else {
-        alert('Заполните все необходимые данные в формате по образцу!')
     }
 
 

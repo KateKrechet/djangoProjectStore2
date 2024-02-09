@@ -72,6 +72,7 @@ td {
 .but_update {
     background-color: dimgrey;
     border: solid black 1px;
+    border-radius: 5px;
     color: white;
     padding: 6px 12px;
     text-align: center;
@@ -79,7 +80,7 @@ td {
     display: inline-block;
 }
 .form_cart select{
-    width: 30%;
+    width: 60%;
     height: 30px;
 }
 

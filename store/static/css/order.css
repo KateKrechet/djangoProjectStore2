@@ -1,20 +1,21 @@
-.order{
+.user{
     flex-direction: column;
 }
 /*отступы от границ формы*/
-.order_form {
+.user_form {
     padding: 10px 10px;
 }
 
-.order_form input,select {
+.user_form input,select {
     border-radius: 5px; /*закругление блоков*/
     border: 1px solid darkslategray; /*толщина границ инпутов*/
+    margin-top: 5px;
     margin-bottom: 10px; /*отступы между инпутами*/
     width: 60%;
     height:25px;
 }
 
-.order_form label,input,select{
+.user_form label,input,select{
     font-weight: bolder;
     font-size: 1em;
 

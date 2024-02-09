@@ -1,5 +1,5 @@
 body {
-    font-family: Tahoma;
+    font-family: Tahoma, serif;
 }
 
 .menu {
@@ -7,6 +7,7 @@ body {
     flex-direction: row;
     /*последний элемент в конце контейнера*/
     justify-content: space-between;
+
     line-height: 3em;
 }
 
@@ -17,12 +18,30 @@ body {
     font-weight: bolder;
 }
 
+.menu span {
+    color: darkblue;
+    font-size: 1em;
+    font-weight: bolder;
+
+}
+
 .submenu {
     display: flex;
     background-color: lightgray;
     justify-content: end;
     line-height: 3em;
+    font-weight: bolder;
 }
+
+.submenu a {
+    text-decoration: none;
+    color: brown;
+}
+
+.submenu a:hover {
+    background-color: chartreuse;
+}
+
 /*все блоки расположены рядом*/
 .content {
     display: flex;

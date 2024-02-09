@@ -20,15 +20,15 @@
     {% if not user.username %}
         <a href="{% url 'login' %}">Мой профиль</a>
     {% else %}
-        <span>Добрый день! {{ username }}<a href="{% url 'logout' %}">Выйти</a></span>
+        <span>Добрый день! {{ user.first_name }} <a href="{% url 'logout' %}">Выйти</a></span>
     {% endif %}
-    {#<a href="/">Мой профиль</a>#}
+
 </div>
 <div class="submenu">
     {% with total_items=cart|length %}
         {% if cart|length > 0 %}
             Ваша корзина:
-            <a href="{% url "cart_detail" %}">
+            <a class="prod_in_cart" href="{% url "cart_detail" %}">
                 {{ total_items }} товаров{{ total_items|pluralize }},
                 {{ cart.get_total_price }} руб.
             </a>
