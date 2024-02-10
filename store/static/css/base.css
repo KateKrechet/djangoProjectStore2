@@ -7,7 +7,6 @@ body {
     flex-direction: row;
     /*последний элемент в конце контейнера*/
     justify-content: space-between;
-
     line-height: 3em;
 }
 
@@ -28,7 +27,8 @@ body {
 .submenu {
     display: flex;
     background-color: lightgray;
-    justify-content: end;
+    flex-direction: column;
+    /*justify-content: space-between;*/
     line-height: 3em;
     font-weight: bolder;
 }
@@ -38,12 +38,47 @@ body {
     color: brown;
 }
 
+/*движение рекламы о скидке 5%*/
+#reclame {
+    color: darkblue;
+    font-weight: bolder;
+    font-size: 1.2em;
+    width: 50%;
+    animation: reclamefly 20s infinite linear;
+    position: relative;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+
+}
+
+@keyframes reclamefly {
+    0% {
+        left: 0%;
+        bottom: 50%
+    }
+    100% {
+        left: 100%;
+        bottom: 0%
+    }
+
+}
+
+/*##########################################*/
 .submenu a:hover {
     background-color: chartreuse;
+}
+
+.submenu span {
+   text-align: right;
+    margin-right: 10px;
 }
 
 /*все блоки расположены рядом*/
 .content {
     display: flex;
 
+}
+
+.discount_href {
+    text-align: left;
 }

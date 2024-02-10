@@ -9,7 +9,7 @@
     <link href="{% static "css/product-detail.css" %}" rel="stylesheet">
     <link href="{% static "css/users_forms.css" %}" rel="stylesheet">
     <link href="{% static "css/cart.css" %}" rel="stylesheet">
-    <link href="{% static "css/order.css" %}" rel="stylesheet">
+    <link href="{% static "css/forms_with_order.css" %}" rel="stylesheet">
     <link href="{% static "css/pay.css" %}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'js/order.js' %}" defer></script>
@@ -25,17 +25,20 @@
 
 </div>
 <div class="submenu">
+    <span id="reclame" class="discount_href">Скидка 5 % на заказ всем зарегистрированным пользователям</span>
     {% with total_items=cart|length %}
         {% if cart|length > 0 %}
-            Ваша корзина:
+            <span>Ваша корзина:
             <a class="prod_in_cart" href="{% url "cart_detail" %}">
                 {{ total_items }} товаров{{ total_items|pluralize }},
                 {{ cart.get_total_price }} руб.
-            </a>
+            </a></span>
         {% else %}
-            Ваша корзина пуста
+            <span>Ваша корзина пуста</span>
         {% endif %}
     {% endwith %}
+
+
 </div>
 <div class="content">
     {% block content %}

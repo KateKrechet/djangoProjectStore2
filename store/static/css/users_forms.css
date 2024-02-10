@@ -1,3 +1,37 @@
-.user_form{
-    flex-direction: column;
+.enter {
+    color: darkblue;
+    padding-left: 10px;
+}
+
+.pass_reset {
+    text-decoration: none;
+    font-size: 0.8em;
+    color: darkblue;
+}
+
+.pass_reset:hover, .reg_href:hover {
+    color: brown;
+}
+
+.reg_href {
+    text-decoration: none;
+    font-size: 1em;
+    color: dimgrey;
+}
+
+.reset_h {
+    padding-left: 10px;
+    color: darkblue;
+}
+
+.reset_h3{
+    padding-left: 10px;
+}
+
+.enter_but {
+    margin-left: 10px;
+    width: 40%;
+    height: 30px;
+    font-weight: bolder;
+    border-radius: 5px;
 }
