@@ -2,7 +2,7 @@
 {% load static %}
 {% block head %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/user.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'js/order.js' %}" defer></script>
     {% block title %}
         Заказ
     {% endblock %}
@@ -34,7 +34,7 @@
         </form>
         <p id="result"></p>
         <p id="cost_discount"></p>
-        <p id="cost_discount_delivery">.</p>
+        <p id="cost_discount_delivery"></p>
         <a id='go_home' class='go_home' href="{% url "home" %}"></a>
         <a id='go_pay' class='go_pay' href="{% url "process" %}"></a>
 

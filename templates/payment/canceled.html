@@ -1,9 +1,9 @@
 {% extends "index.html" %}
 {% block content %}
-    <div class="order">
-        <h1>Отмена!</h1>
-        <p>Возникла проблема с обработкой Вашего платежа.</p>
-        <a id='go_home' class='go_home' href="{% url "home" %}">На главную</a>
+    <div class="user">
+        <h2 class="reset_h">Отмена!</h2>
+        <h3 class="reset_h3">Возникла проблема с обработкой Вашего платежа.</h3>
+        <a class='go_home1' href="{% url "home" %}">Вернуться к покупкам</a>
     </div>
 
 {% endblock %}

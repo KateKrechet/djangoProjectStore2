@@ -1,9 +1,9 @@
 {% extends "index.html" %}
 {% block content %}
-    <div class="order">
-        <h1>Успешно!</h1>
-        <p>Ваш платеж успешно обработан.</p>
-        <a id='go_home' class='go_home' href="{% url "home" %}">На главную</a>
+    <div class="user">
+        <h2 class="reset_h">Успешно!</h2>
+        <h3 class="reset_h3">Ваш платеж успешно обработан.</h3>
+        <a class='go_home1' href="{% url "home" %}">Вернуться к покупкам</a>
     </div>
 
 {% endblock %}
