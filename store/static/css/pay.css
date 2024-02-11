@@ -1,5 +1,8 @@
 #but_pay{
     width: 20%;
+    height: 30px;
+    font-weight: bolder;
+    border-radius: 5px;
 }
 #card-number{
     width: 50%;
