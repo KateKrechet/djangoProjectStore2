@@ -159,5 +159,10 @@ BRAINTREE_PUBLIC_KEY,
 BRAINTREE_PRIVATE_KEY
 )
 
+# отправка сообщения в чат админа (Telegram)
+# эта строчка позволяет получить данные ТГ
+# https://api.telegram.org/bot5454744752:AAFboSLD_pHqFPUXrG_Fup5TVleSker9CXY/getUpdates
+TOKEN = "5454744752:AAFboSLD_pHqFPUXrG_Fup5TVleSker9CXY"
+chat_id = "1899000306"
 
 

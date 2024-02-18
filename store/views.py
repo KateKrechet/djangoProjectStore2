@@ -8,7 +8,7 @@ from .cart import Cart
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from .tasks import order_created
+from .tasks import *
 from django.urls import reverse
 import braintree
 import requests
@@ -166,6 +166,16 @@ def order_create(request):
             print(order.id)
             # асинхронная задача - отправление письма о заказе
             order_created.delay(order.id)
+            # отправка деталей заказа в ТГ админа
+            items = OrderItem.objects.filter(order=order.id)
+            details = ''
+            for one in items:
+                details += str(one.product) + ' - ' + str(one.quantity) + ' шт.''\n'
+            message = f'Новый заказ - {order.id} на сумму {order.amount_rub} руб.\n' \
+                      f'Контакты: {order.name},{order.address},{order.phone}.\n' \
+                      f'{details}'
+            url = f"https://api.telegram.org/bot{settings.TOKEN}/sendMessage?chat_id={settings.chat_id}&text={message}"
+            print(requests.get(url).json())
             # устанавливаем в сессии номер текущего заказа
             request.session['order_id'] = order.id
 
