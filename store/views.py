@@ -53,8 +53,8 @@ def contacts(request):
         zoom_start=10,
         # tiles='Stamen Terrain'
     )
-    HeatMap([[53.269425, 34.346043, 0.1]]).add_to(plot1)
-    plot1.save('templates/store/map.html')
+    folium.Marker([53.269425, 34.346043]).add_to(plot1)
+    # plot1.save('templates/store/map.html')
     return render(request, 'store/contacts.html')
 
 
