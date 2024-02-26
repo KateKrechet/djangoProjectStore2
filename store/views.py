@@ -13,6 +13,7 @@ from django.urls import reverse
 import braintree
 import requests
 import folium
+import pandas as pd
 
 
 # Create your views here.
@@ -47,13 +48,17 @@ def type_pay(request):
 
 
 def contacts(request):
-    map = folium.Map(
+    plot1 = folium.Map(
         location=[64.6863136, 97.7453061],  # широта и долгота России
         zoom_start=4,
-        tiles='Stamen Terrain'
+        # tiles='Stamen Terrain'
     )
-    data = {'map': map}
-    return render(request, 'store/contacts.html',data)
+    # plot1.save('my_map.html')
+    # способ переноса фигуры в html-формат
+    plot = plot1.to_html(full_html=False, include_plotlyjs='cdn')
+    print(plot)
+    data = {'map': plot}
+    return render(request, 'store/contacts.html', data)
 
 
 # регистрация пользователя
