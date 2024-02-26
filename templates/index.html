@@ -17,6 +17,9 @@
 <body>
 <div class="menu">
     <a href="/">Ресторан доставки</a>
+    <a href="{% url "delivery_terms" %}">Условия доставки</a>
+    <a href="{% url "type_pay" %}">Способы оплаты</a>
+    <a href="{% url "contacts" %}">Контакты</a>
     {% if not user.username %}
         <a href="{% url 'login' %}">Мой профиль</a>
     {% else %}

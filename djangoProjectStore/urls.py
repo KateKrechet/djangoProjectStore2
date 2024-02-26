@@ -41,8 +41,8 @@ urlpatterns = [
          name='product_list_by_category'),
     path('<int:id>/<slug:slug>/', views.product_detail,
          name='product_detail'),
-
-
-
+    path('/delivery_terms/', views.delivery_terms, name='delivery_terms'),
+    path('/type_of_pay/', views.type_pay, name='type_pay'),
+    path('/contacts/', views.contacts, name='contacts'),
 
 ]

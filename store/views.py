@@ -12,6 +12,7 @@ from .tasks import *
 from django.urls import reverse
 import braintree
 import requests
+import folium
 
 
 # Create your views here.
@@ -35,6 +36,24 @@ def product_detail(request, id, slug):
     cart_product_form = CartAddProductForm()
     data = {'product': product, 'cart_product_form': cart_product_form}
     return render(request, 'store/product_detail.html', data)
+
+
+def delivery_terms(request):
+    return render(request, 'store/delivery_terms.html')
+
+
+def type_pay(request):
+    return render(request, 'store/type_of_pay.html')
+
+
+def contacts(request):
+    map = folium.Map(
+        location=[64.6863136, 97.7453061],  # широта и долгота России
+        zoom_start=4,
+        tiles='Stamen Terrain'
+    )
+    data = {'map': map}
+    return render(request, 'store/contacts.html',data)
 
 
 # регистрация пользователя
