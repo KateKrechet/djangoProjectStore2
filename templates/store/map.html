@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_b4ad7da78cfc81595b7563954a9d047e {
+                #map_217ffbc2e6e0015ae54673ffc1d99a67 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -35,19 +35,18 @@
                 .leaflet-container { font-size: 1rem; }
             </style>
         
-    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
 </head>
 <body>
     
     
-            <div class="folium-map" id="map_b4ad7da78cfc81595b7563954a9d047e" ></div>
+            <div class="folium-map" id="map_217ffbc2e6e0015ae54673ffc1d99a67" ></div>
         
 </body>
 <script>
     
     
-            var map_b4ad7da78cfc81595b7563954a9d047e = L.map(
-                "map_b4ad7da78cfc81595b7563954a9d047e",
+            var map_217ffbc2e6e0015ae54673ffc1d99a67 = L.map(
+                "map_217ffbc2e6e0015ae54673ffc1d99a67",
                 {
                     center: [53.2434, 34.363991],
                     crs: L.CRS.EPSG3857,
@@ -61,22 +60,19 @@
 
         
     
-            var tile_layer_6ffbdbf6a37adb8eac8cb66550ebbae0 = L.tileLayer(
+            var tile_layer_51fa0d55c9d0cae8b98ad863d458b57e = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
             );
         
     
-            tile_layer_6ffbdbf6a37adb8eac8cb66550ebbae0.addTo(map_b4ad7da78cfc81595b7563954a9d047e);
+            tile_layer_51fa0d55c9d0cae8b98ad863d458b57e.addTo(map_217ffbc2e6e0015ae54673ffc1d99a67);
         
     
-            var heat_map_202103a346926140e21e95f27e9c0c5a = L.heatLayer(
-                [[53.269425, 34.346043, 0.1]],
-                {"blur": 15, "maxZoom": 18, "minOpacity": 0.5, "radius": 25}
-            );
-        
-    
-            heat_map_202103a346926140e21e95f27e9c0c5a.addTo(map_b4ad7da78cfc81595b7563954a9d047e);
+            var marker_708ba33b5214a5e026428a48d44b9f48 = L.marker(
+                [53.269425, 34.346043],
+                {}
+            ).addTo(map_217ffbc2e6e0015ae54673ffc1d99a67);
         
 </script>
 </html>
