@@ -1,3 +1,6 @@
-.folium-map{
-    width:100%;
+.contacts {
+    flex-direction: column;
+    width: 50%;
+    height: 400px;
+
 }

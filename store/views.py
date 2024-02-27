@@ -50,8 +50,7 @@ def type_pay(request):
 def contacts(request):
     plot1 = folium.Map(
         location=[53.243400, 34.363991],  # широта и долгота России
-        zoom_start=10,
-        # tiles='Stamen Terrain'
+        zoom_start=11,
     )
     folium.Marker([53.269425, 34.346043]).add_to(plot1)
     # plot1.save('templates/store/map.html')
