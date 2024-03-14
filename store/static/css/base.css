@@ -1,3 +1,4 @@
+
 body {
     font-family: Tahoma, serif;
 }
@@ -9,12 +10,17 @@ body {
     justify-content: space-between;
     line-height: 3em;
 }
+.logo{
+    width: 70px;
+    height: 70x;
+}
 
 .menu a {
     text-decoration: none;
     color: black;
     font-size: 1.2em;
     font-weight: bolder;
+    margin-right: 2%;
 }
 
 .menu span {

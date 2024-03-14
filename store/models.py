@@ -60,13 +60,17 @@ class Order(models.Model):
     email = models.EmailField(verbose_name='email', validators=[exam_mail])
     address = models.CharField(max_length=250, blank=True, null=True, verbose_name='Адрес')
     delivery = models.CharField(max_length=20, verbose_name='Доставка', choices=DELIVERY_CHOICES, default='0')
-    phone = models.CharField(max_length=12, verbose_name='Моб.телефон',validators=[RegexValidator('[+7][0-9]{10}', message='Введите телефон в формате +7**********')])
+    phone = models.CharField(max_length=12, verbose_name='Моб.телефон', validators=[
+        RegexValidator('[+7][0-9]{10}', message='Введите телефон в формате +7**********')])
     created = models.DateTimeField(auto_now_add=True, verbose_name='Заказ создан')
     updated = models.DateTimeField(auto_now=True, verbose_name='Заказ обновлен')
-    paid = models.BooleanField(default=False, verbose_name='Заказ оплачен/не оплачен')
+    paid = models.BooleanField(default=False, verbose_name='Оплачен')
     braintree_id = models.CharField(max_length=150, blank=True, verbose_name='ID транзакции')
-    amount_rub = models.DecimalField(max_digits=10, decimal_places=2, blank=True,null=True, verbose_name='Сумма заказа (руб)')
-    amount_usd = models.DecimalField(max_digits=10, decimal_places=2, blank=True,null=True, verbose_name='Сумма заказа (usd)')
+    amount_rub = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True,
+                                     verbose_name='Сумма заказа (руб)')
+    amount_usd = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True,
+                                     verbose_name='Сумма заказа (usd)')
+    done = models.BooleanField(default=False, verbose_name='Доставлен', blank=True, null=True)
 
     class Meta:
         ordering = ('created',)
