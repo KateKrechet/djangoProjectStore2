@@ -4,6 +4,7 @@
     {{ product.name }}
 {% endblock %}
 {% block content %}
+
     <div class="product-detail">
         <img src="{% if product.image %}{% static product.image %}{% else %}
         {% static "img/no_image.png" %}{% endif %}">
@@ -16,11 +17,15 @@
                 <tr>{{ cart_product_form.quantity.label_tag }}</tr>
                 <tr>{{ cart_product_form.quantity }}</tr>
             </table>
-{#            {{ cart_product_form }}#}
+            {#            {{ cart_product_form }}#}
             {% csrf_token %}
             <input class="to_cart" type="submit" value="Добавить в корзину">
         </form>
         {{ product.description|linebreaks }}
         <p>Вес: {{ product.volume }} г</p>
+        <p class="actions">
+            <a class='go_home' href="{% url "home" %}">Вернуться к покупкам</a>
+        </p>
     </div>
+
 {% endblock %}

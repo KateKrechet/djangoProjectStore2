@@ -1,6 +1,6 @@
 .cart {
     flex-direction: column;
-    
+
 }
 
 .cart table {
@@ -53,23 +53,27 @@ td {
 .actions {
     text-align: right;
 }
-.go_home{
+
+.go_home {
     text-decoration: none;
     color: darkblue;
     font-size: 1.2em;
     font-weight: bold;
     margin-right: 2%;
 }
-.go_to_order{
+
+.go_to_order {
     text-decoration: none;
     color: red;
     font-size: 1.2em;
     font-weight: bold;
     margin-right: 2%;
 }
-.cart td img{
+
+.cart td img {
     width: 50%;
 }
+
 .but_update {
     background-color: dimgrey;
     border: solid black 1px;
@@ -80,8 +84,107 @@ td {
     text-decoration: none;
     display: inline-block;
 }
-.form_cart select{
+
+.form_cart select {
     width: 60%;
     height: 30px;
 }
 
+@media (max-width: 900px) {
+
+    .cart thead th:nth-child(1) {
+        width: 30%;
+    }
+
+    .cart thead th:nth-child(2) {
+        width: 10%;
+    }
+
+    .cart thead th:nth-child(3) {
+        width: 10%;
+    }
+
+    .cart thead th:nth-child(4) {
+        width: 10%;
+    }
+
+    .cart thead th:nth-child(5) {
+        width: 10%;
+    }
+
+    .cart thead th:nth-child(6) {
+        width: 10%;
+    }
+
+    .cart th,
+    td {
+        font-size: 0.8em;
+        text-align: left;
+
+    }
+
+    .all {
+        font-size: 0.8em;
+    }
+
+    .actions {
+        font-size: 0.8em;
+        text-align: left;
+    }
+}
+
+@media (max-width: 840px) {
+
+    .cart thead th:nth-child(1) {
+        width: 20%;
+    }
+
+    .cart thead th:nth-child(2) {
+        width: 15%;
+    }
+
+    .cart thead th:nth-child(3) {
+        width: 15%;
+    }
+
+    .cart thead th:nth-child(4) {
+        width: 10%;
+    }
+
+    .cart thead th:nth-child(5) {
+        width: 10%;
+    }
+
+    .cart thead th:nth-child(6) {
+        width: 10%;
+    }
+
+}
+
+@media (max-width: 560px) {
+
+    .cart thead th:nth-child(1) {
+        width: 15%;
+    }
+
+    .cart thead th:nth-child(2) {
+        width: 18%;
+    }
+
+    .cart thead th:nth-child(3) {
+        width: 17%;
+    }
+
+    .cart thead th:nth-child(4) {
+        width: 10%;
+    }
+
+    .cart thead th:nth-child(5) {
+        width: 10%;
+    }
+
+    .cart thead th:nth-child(6) {
+        width: 10%;
+    }
+
+}
